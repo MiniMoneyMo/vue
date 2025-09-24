@@ -10,6 +10,7 @@
 </head>
 <body>
     <div id="app">
+        <input type="text" v-on:input="setMessage">
         <h1>{{message}}</h1>
         <button @click="count--">-</button>Счетчик : {{count}}<button @click="count++">+</button>
     </div>
@@ -17,15 +18,19 @@
     
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
     <script>
-        const {createApp} = Vue;
-        createApp({
-            data(){
+        Vue.createApp({ // создаем объект приложения Vue
+            data(){     // определяем используемые данные
                 return{
-                    message: 'Добавьте товар',
+                    message: 'Добавьте товар', // статичная строка которая выводится на страницу
                     count :0
                 }
+            },
+            methods:{   // выполняем какие то действия
+                setMessage(event){                      // передаем информацию о событии
+                    this.message = event.target.value;  // получаем введенное в input значение и присваиваем его message , через this получаем свойство message, определенное выше в коде
+                }
             }
-        }).mount('#app');
+        }).mount('#app'); //связываем созданный объект Vue с элементом html с id = app
 
     </script>
 

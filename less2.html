@@ -41,11 +41,22 @@
                 },
                 displayUser(){
                     return "UserInfo : name" + this.name + " age " + this.age;
+                },
+                incrementAge(){ // пишем простой метод, который увеличивает возраст на единицу
+                    this.age++;
+                },
+                incrementAgeTreeTimes(){    // пишем метод, который увеличит возраст на 3
+                    this.incrementAge();
+                    this.incrementAge();
+                    this.incrementAge();    // внутри объекта к методам можно обращаться через this указатель
                 }
             }    
         });
         
-        vueApp.mount('#app'); // монтируем наш html блок app, указывая, что объект применяется к нему
+        const vm = vueApp.mount('#app'); // сохраняем корневой экземпляр компонент в переменную
+
+        // можно работать с методами внутри нашего скрипта
+        vm.incrementAgeTreeTimes();
     </script>
 
 </body>

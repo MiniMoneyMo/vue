@@ -7,16 +7,33 @@
     <title>Vue - lesson2</title>
 </head>
 <body>
-    // создаем блок с которым будем работать
-    <div id="app"></div>
+    <!-- создаем блок с которым будем работать -->
+    <div id="app">
+        <!-- заводим 2 свойста Name и Age в которые будут передаваться значения из нашего скрипта -->
+        <p>Name : {{ name }}</p>
+        <p>Age : {{ age }}</p>
+    </div>
 
-    // подключаем CDN vue
+    <!-- подключаем CDN vue -->
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
 
-    // пишем скрипт для работы с блоком app 
+    <!-- пишем скрипт для работы с блоком app  -->
     <script>
-        // создаем пустой объект vue
-        const vueApp = Vue.createApp({});
+        const vueApp = Vue.createApp({
+            // передаем в объект данные используя data, возвращаем эти данные в свойства name и age
+            data(){
+                return{name: 'Bob', age: 30}
+            },
+            mounted(){  // используем метод mounted для замены значения age
+                //  получаем данные
+                console.log(this.age); //   36
+                // изменяем данные
+                this.age = 25;
+                console.log(this.age);  // 25
+            }
+        })
+        
+        vueApp.mount('#app'); // монтируем наш html блок app, указывая, что объект применяется к нему
     </script>
 
 </body>
